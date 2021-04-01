@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  portfolio:
+    container_name: portfolio
+    build: 
+      context: ./web
+      dockerfile: ./Dockerfile
+    environment: 
+      - USUARIO=dome
+      - PASSWD=usuario
+      - HOSTNAME=web.netlux.es
+      - PROYECTO=portfolio
+    volumes:
+      - ./lux/:/var/www/html
+    networks: 
+      netlux:
+          ipv4_address: 190.170.10.2
+networks: 
+  netlux:
+      ipam: 
+          driver: default
+          config: 
+              - subnet: 190.170.10.0/24
